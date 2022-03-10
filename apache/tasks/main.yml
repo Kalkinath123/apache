@@ -1,0 +1,22 @@
+---
+# tasks file for apache
+
+- name: install apache
+  yum:
+    name: httpd
+    state: present
+
+- name: start the apache
+  service:
+    name: httpd
+    state: started
+
+- name: change the welcome page
+  copy:
+    src: index.html
+    dest: /var/www/html
+
+- name: changing in the welcome page
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
